@@ -27,245 +27,20 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Nov 21, 2015</h4>
+        <div id="content">
+
+
+
+            <h4 class="date">Nov 21, 2015</h4>
 
             <article class="post">
                 <h2 class="title">
                     <a href="/zai-pelicanxia-shi-yong-blue-penguinde-xiao-xin-de.html" rel="bookmark" title="Permanent Link to &quot;在Pelican下使用blue-penguin的小心得&quot;">在Pelican下使用blue-penguin的小心得</a>
                 </h2>
-
+                
                 <h4>选择Pelican编写博客都原因</h4>
 <p>如果你是程序员，看到此文肯定会喷我，我不是程序员，所以里面有大量超级low的操作，你们就忍忍吧，不希望我误导大家，就请在下面的回复里补充，小马感激不尽。</p>
-<p>在博客已经算是落后产物的当下，选择做一个博客是个有趣的决定，一方面是因为秉承“做中学”的原则，总觉得既然想学点编程，总不能天天只看教程什么都不做，另一方面也确实发现随着工作年限的积累，需要开始给自己积累些文字性的东西了，没有用像新浪博客这种东西的原因，纯是因为感觉自己编的博客比较diao而已。</p>
-<p>选择Pelican的原因是，我只学了点Python，当时小勾推荐用的是Jekyll，即便他说不用学Ruby也能用，但事实上我的电脑死活装不上去，而且完全不知道为什么。我觉得小白们应该和我有一样的感觉，大神轻易部署的环境，到自己的电脑里死活装不上，而且根本不知道为什么。博客部署还是用的Github pages，事实上对于一个非程序员而言，如果不是这个博客，可能一辈子都不知道Github究竟是什么鬼。</p>
-<h4>使用的环境</h4>
-<p>先整体介绍一下我的环境：</p>
-<h5>系统环境：OS X 10.10.5</h5>
-<p>Win好还是Mac好，虽然乔老爷子仙逝之后，苹果的创造力有所下降，而且微软也出现了Surface这种大牛货，但是不要和Mac用户讨论谁好，Mac的好是弥漫式的，也许仅仅体现在一个字体的现实效果上，而且用Mac，你可以体验到各种神器。当然，为了避免某些尴尬，建议大家安装一个Parallels Desktop。</p>
-<h5>IDE:Xcode</h5>
-<p>什么是IDE对于小白来说，这就是个问题，引用百度百科的解释：</p>
-<blockquote>
-<p>IDE集成开发环境（简称IDE）软件是用于程序开发环境的应用程序，一般包括代码编辑器、编译器、调试器和图形用户界面工具。</p>
-</blockquote>
-<p>虽然大牛们会说一句，就这点东西，用文本编辑还不够么，确实不够，越是大神，越能脱离工具的控制，越是小白，越需要工具帮助。Xcode是苹果程序员必备开发软件，本以为这个东西会很大，但是打开单个的html或者markdown文档速度相当的快。</p>
-<h5>markdown文档工具：马克飞象</h5>
-<p>这是一款专门为印象笔记设计的markdown工具，为什么要用它，真比其他的好用多少么？当然没有，只是在一次会议上，打开马克飞象做记录，周围的人都来问这是什么东西，好吧，虚荣心让我已经离不开他了。</p>
-<h5>GitHub工具：GitHub Desktop for Mac</h5>
-<p>不是程序员就别老学人家用Terminal操作了，你确定你都知道自己干了些什么么，GitHub Desktop是官方给的工具，直接改文件里的内容，用他更新，棒棒哒。</p>
-<h5>翻墙软件：VPNPP</h5>
-<p>别问为什么了，不翻下载某些东西的时候就是报错，某些网站就是上不去，某些教程就是查不到，别找免费的了，省点钱不够闹心的。</p>
-<h5>其他的环境：Virtualenv工具、Python 2.7</h5>
-<p>使用Virtualenv的原因很简单，就是Pelican也出现了死活安不上的问题，用Virtualenv就都解决了，Python2.7是自带的，还有其他的乱七八糟也不知道安了多少插件，教程实在太多了，我这里就不写了，这篇文章重要是写关于blue-penguin的设置问题。</p>
-<h4>blue-penguin的设置与使用</h4>
-<p>先上一张图，这是写这片文章之前的图：
-<img alt="aimage" src="/images/1448118648087.png" />
-有可能大家看到这篇文章的时候，这个博客已经不用这个主题了，为什么我后面会说。</p>
-<p>选择这个主题的主要原因是，这个主题很简单，元素少，内容文章显示内容多，符合我的审美情趣，网址是：<a href="https://github.com/jody-frankowski/blue-penguin">https://github.com/jody-frankowski/blue-penguin</a>
-我现在这个阶段用Pelican非常简单，写好文章，存储称为.md格式，放在content文件夹下，然后用Terminal做如下操作</p>
-<div class="highlight"><pre>cd pelican ＃打开pelican文件夹 
-source bin/activate ＃打开Virtualenv
-cd jonymblog ＃打开项目文件夹（jonymblog是生成的文件夹名）
-make html 
-make publish
-make serve ＃各种生成，生成完以后就可以登陆localhost:8000登陆
-</pre></div>
-
-
-<p>如果你复制以上代码，并输入到terminal当中，点击回车，没有报错的话就在output文件夹里面生成了最新的html文件，全部复制并粘贴到与github链接的文件夹中，全部替换，并利用GitHub Desktop更新就好，所以关于Pelican的设置完全就取决于pelicanconf.py这个文件到底是怎么设置的，那我先输出一下我的设置文件，然后一点点说里面这么设置的原因：</p>
-<div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
-<span class="c"># -*- coding: utf-8 -*- #</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
-
-<span class="n">AUTHOR</span> <span class="o">=</span> <span class="s">u&#39;Jonym&#39;</span>
-<span class="n">SITENAME</span> <span class="o">=</span> <span class="s">u&quot;小马的杂货铺&quot;</span>
-<span class="n">SITEURL</span> <span class="o">=</span> <span class="s">&#39;http://jonym.com&#39;</span>
-<span class="n">TIMEZONE</span> <span class="o">=</span> <span class="s">&#39;Asia/Shanghai&#39;</span>
-
-<span class="n">PATH</span> <span class="o">=</span> <span class="s">&#39;content&#39;</span>
-<span class="n">DATE_FORMATS</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">&#39;zh_CN&#39;</span><span class="p">:</span> <span class="s">&#39;%Y-%m-</span><span class="si">%d</span><span class="s"> %H:%M:%S&#39;</span><span class="p">,</span>
-<span class="p">}</span>
-<span class="n">DEFAULT_DATE_FORMAT</span> <span class="o">=</span> <span class="s">&#39;%Y-%m-</span><span class="si">%d</span><span class="s"> %H:%M:%S&#39;</span>
-<span class="n">DEFAULT_LANG</span> <span class="o">=</span> <span class="s">u&#39;zh_CN&#39;</span>
-<span class="n">LOCALE</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;en_US&#39;</span><span class="p">)</span>
-
-<span class="c"># Feed generation is usually not desired when developing</span>
-<span class="n">FEED_ALL_ATOM</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="n">CATEGORY_FEED_ATOM</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="n">TRANSLATION_FEED_ATOM</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="n">AUTHOR_FEED_ATOM</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="n">AUTHOR_FEED_RSS</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="n">THEME</span> <span class="o">=</span> <span class="s">&#39;blue-penguin&#39;</span>
-
-<span class="n">DISQUS_SITENAME</span> <span class="o">=</span> <span class="s">u&quot;jonym&quot;</span>
-
-<span class="c"># all defaults to True.</span>
-<span class="n">DISPLAY_HEADER</span> <span class="o">=</span> <span class="bp">True</span>
-<span class="n">DISPLAY_FOOTER</span> <span class="o">=</span> <span class="bp">True</span>
-<span class="n">DISPLAY_HOME</span>   <span class="o">=</span> <span class="bp">False</span>
-<span class="n">DISPLAY_MENU</span>   <span class="o">=</span> <span class="bp">True</span>
-
-<span class="c"># provided as examples, they make ‘clean’ urls. used by MENU_INTERNAL_PAGES.</span>
-<span class="c">#TAGS_URL           = &#39;tags&#39;</span>
-<span class="c">#TAGS_SAVE_AS       = &#39;tags/index.html&#39;</span>
-<span class="n">HOME_URL</span>            <span class="o">=</span> <span class="s">&#39;index&#39;</span>
-<span class="n">HOME_SAVE_AS</span>        <span class="o">=</span> <span class="s">&#39;index.html&#39;</span>
-<span class="n">ABOUT_URL</span>           <span class="o">=</span> <span class="s">&#39;pages/about-me&#39;</span>
-<span class="n">ABOUT_SAVE_AS</span>       <span class="o">=</span> <span class="s">&#39;pages/about-me.html&#39;</span>
-<span class="c">#AUTHORS_URL        = &#39;authors&#39;</span>
-<span class="c">#AUTHORS_SAVE_AS    = &#39;authors/index.html&#39;</span>
-<span class="c">#CATEGORIES_URL     = &#39;categories&#39;</span>
-<span class="c">#CATEGORIES_SAVE_AS = &#39;categories/index.html&#39;</span>
-<span class="n">ARCHIVES_URL</span>        <span class="o">=</span> <span class="s">&#39;archives&#39;</span>
-<span class="n">ARCHIVES_SAVE_AS</span>    <span class="o">=</span> <span class="s">&#39;archives/index.html&#39;</span>
-
-<span class="c"># use those if you want pelican standard pages to appear in your menu</span>
-<span class="n">MENU_INTERNAL_PAGES</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="c">#(&#39;Tags&#39;, TAGS_URL, TAGS_SAVE_AS),</span>
-    <span class="c">#(&#39;Authors&#39;, AUTHORS_URL, AUTHORS_SAVE_AS),</span>
-    <span class="c">#(&#39;Categories&#39;, CATEGORIES_URL, CATEGORIES_SAVE_AS),</span>
-    <span class="p">(</span><span class="s">&#39;Home&#39;</span><span class="p">,</span><span class="n">HOME_URL</span><span class="p">,</span><span class="n">HOME_SAVE_AS</span><span class="p">),</span>
-    <span class="p">(</span><span class="s">&#39;Archives&#39;</span><span class="p">,</span> <span class="n">ARCHIVES_URL</span><span class="p">,</span> <span class="n">ARCHIVES_SAVE_AS</span><span class="p">),</span>
-    <span class="p">(</span><span class="s">&#39;About Me&#39;</span><span class="p">,</span> <span class="n">ABOUT_URL</span><span class="p">,</span> <span class="n">ABOUT_SAVE_AS</span><span class="p">),</span>
-<span class="p">)</span>
-<span class="c"># additional menu items</span>
-<span class="c">#MENUITEMS = (</span>
-<span class="c">#    (&#39;GitHub&#39;, &#39;https://github.com/&#39;),</span>
-<span class="c">#    (&#39;Linux Kernel&#39;, &#39;https://www.kernel.org/&#39;),</span>
-<span class="c">#)</span>
-
-<span class="c"># Blogroll</span>
-<span class="n">LINKS</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;Pelican&#39;</span><span class="p">,</span> <span class="s">&#39;http://getpelican.com/&#39;</span><span class="p">),</span>
-         <span class="p">(</span><span class="s">&#39;Python.org&#39;</span><span class="p">,</span> <span class="s">&#39;http://python.org/&#39;</span><span class="p">),</span>
-         <span class="p">(</span><span class="s">&#39;Jinja2&#39;</span><span class="p">,</span> <span class="s">&#39;http://jinja.pocoo.org/&#39;</span><span class="p">),</span>
-         <span class="p">(</span><span class="s">&#39;You can modify those links in your config file&#39;</span><span class="p">,</span> <span class="s">&#39;#&#39;</span><span class="p">),)</span>
-
-<span class="c"># Social widget</span>
-<span class="n">SOCIAL</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;You can add links in your config file&#39;</span><span class="p">,</span> <span class="s">&#39;#&#39;</span><span class="p">),</span>
-          <span class="p">(</span><span class="s">&#39;Another social link&#39;</span><span class="p">,</span> <span class="s">&#39;#&#39;</span><span class="p">),)</span>
-
-<span class="n">DEFAULT_PAGINATION</span> <span class="o">=</span> <span class="mi">6</span>
-
-<span class="c"># Uncomment following line if you want document-relative URLs when developing</span>
-<span class="c">#RELATIVE_URLS = True</span>
-</pre></div>
-
-
-<p>大家看到#号就知道，这是被我备注掉的代码，正常来讲应该是删除掉，但是难免有一天你又突然发现有些东西需要，所以我基本上不删除代码，作为资深菜鸟，要把用过的代码都放着，万一想再用的时候找不到，就悲剧了。下面一点点说里面重要的设置内容。</p>
-<h5>将blun-penguin设置为主题</h5>
-<p>从官方下载主题文件到文件夹中，并在pelicanconf.py添加一行代码：</p>
-<div class="highlight"><pre><span class="n">THEME</span> <span class="o">=</span> <span class="s">&#39;blue-penguin&#39;</span>
-</pre></div>
-
-
-<p>这样就可以了，主题到文件说明中要求复制如下代码到pelicanconf.py中，先照着做，然后改：</p>
-<div class="highlight"><pre><span class="c"># all the following settings are *optional*</span>
-
-<span class="c"># all defaults to True.</span>
-<span class="n">DISPLAY_HEADER</span> <span class="o">=</span> <span class="bp">True</span>
-<span class="n">DISPLAY_FOOTER</span> <span class="o">=</span> <span class="bp">True</span>
-<span class="n">DISPLAY_HOME</span>   <span class="o">=</span> <span class="bp">True</span>
-<span class="n">DISPLAY_MENU</span>   <span class="o">=</span> <span class="bp">True</span>
-
-<span class="c"># provided as examples, they make ‘clean’ urls. used by MENU_INTERNAL_PAGES.</span>
-<span class="n">TAGS_URL</span>           <span class="o">=</span> <span class="s">&#39;tags&#39;</span>
-<span class="n">TAGS_SAVE_AS</span>       <span class="o">=</span> <span class="s">&#39;tags/index.html&#39;</span>
-<span class="n">AUTHORS_URL</span>        <span class="o">=</span> <span class="s">&#39;authors&#39;</span>
-<span class="n">AUTHORS_SAVE_AS</span>    <span class="o">=</span> <span class="s">&#39;authors/index.html&#39;</span>
-<span class="n">CATEGORIES_URL</span>     <span class="o">=</span> <span class="s">&#39;categories&#39;</span>
-<span class="n">CATEGORIES_SAVE_AS</span> <span class="o">=</span> <span class="s">&#39;categories/index.html&#39;</span>
-<span class="n">ARCHIVES_URL</span>       <span class="o">=</span> <span class="s">&#39;archives&#39;</span>
-<span class="n">ARCHIVES_SAVE_AS</span>   <span class="o">=</span> <span class="s">&#39;archives/index.html&#39;</span>
-
-<span class="c"># use those if you want pelican standard pages to appear in your menu</span>
-<span class="n">MENU_INTERNAL_PAGES</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="p">(</span><span class="s">&#39;Tags&#39;</span><span class="p">,</span> <span class="n">TAGS_URL</span><span class="p">,</span> <span class="n">TAGS_SAVE_AS</span><span class="p">),</span>
-    <span class="p">(</span><span class="s">&#39;Authors&#39;</span><span class="p">,</span> <span class="n">AUTHORS_URL</span><span class="p">,</span> <span class="n">AUTHORS_SAVE_AS</span><span class="p">),</span>
-    <span class="p">(</span><span class="s">&#39;Categories&#39;</span><span class="p">,</span> <span class="n">CATEGORIES_URL</span><span class="p">,</span> <span class="n">CATEGORIES_SAVE_AS</span><span class="p">),</span>
-    <span class="p">(</span><span class="s">&#39;Archives&#39;</span><span class="p">,</span> <span class="n">ARCHIVES_URL</span><span class="p">,</span> <span class="n">ARCHIVES_SAVE_AS</span><span class="p">),</span>
-<span class="p">)</span>
-<span class="c"># additional menu items</span>
-<span class="n">MENUITEMS</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="p">(</span><span class="s">&#39;GitHub&#39;</span><span class="p">,</span> <span class="s">&#39;https://github.com/&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s">&#39;Linux Kernel&#39;</span><span class="p">,</span> <span class="s">&#39;https://www.kernel.org/&#39;</span><span class="p">),</span>
-<span class="p">)</span>
-</pre></div>
-
-
-<h5>设置日期格式</h5>
-<p>当大家放入一篇测试文章的时候，发现日期格式不太对啊，月份并没有以英文简写的方式出现，而是以阿拉伯数字的形式出现，不要太丑好吧，虽然也加了很多有用没用的代码在里面，但最后发现，最关键的是在pelicanconf.py添加这行代码。</p>
-<div class="highlight"><pre><span class="n">LOCALE</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;en_US&#39;</span><span class="p">)</span>
-</pre></div>
-
-
-<p>其实就算括号里什么都不添加，文件找不到后默认还是英文的月份，但没这行就是达不到要的效果。</p>
-<h5>无效的Home解决方案</h5>
-<p>正常来讲，点击Home或者点击博客名称都应该回到首页，但是自动生成的文件，并没有，网页给到的反馈是反应了一下，但是没有变化，对比官方的博客发现有如下问题，官方的相关html标签内容中是这样设置的：</p>
-<div class="highlight"><pre><span class="nt">&lt;h1&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;../..&quot;</span><span class="nt">&gt;</span>Computer Stuff<span class="nt">&lt;/a&gt;&lt;/h1&gt;</span>
-</pre></div>
-
-
-<p>而我们生成的是这么设置的：</p>
-<div class="highlight"><pre><span class="nt">&lt;h1&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>小马的杂货铺<span class="nt">&lt;/a&gt;&lt;/h1&gt;</span>
-</pre></div>
-
-
-<p>这个href标签的设置也太坑了吧，我也不能产生的所有html页面全都打开改一遍吧，当然据说有人可以对某个文件夹中所有html相同的字段进行修改，如果有这种神器当然好，不过我没找到能用的，于是做了如下的设置：
-首先将官方要求的DISPLAY_HOME设置成False</p>
-<div class="highlight"><pre><span class="n">DISPLAY_HOME</span>   <span class="o">=</span> <span class="bp">False</span>
-</pre></div>
-
-
-<p>然后又添加了一个假的Home</p>
-<div class="highlight"><pre><span class="n">HOME_URL</span>            <span class="o">=</span> <span class="s">&#39;index&#39;</span>
-<span class="n">HOME_SAVE_AS</span>        <span class="o">=</span> <span class="s">&#39;index.html&#39;</span>
-</pre></div>
-
-
-<p>以及在MENU_INTERNAL_PAGES中添加('Home',HOME_URL,HOME_SAVE_AS),
-这样虽然点击博客名称虽然仍然没有解决，但是Home按钮正常了。</p>
-<blockquote>
-<p>此处肯定有更好的解决方案，只是我不会</p>
-</blockquote>
-<h5>设置About Me</h5>
-<p>默认官方生成出来的菜单中有很多选项，但是都没什么用，最关键的About Me竟然没有，我除了把Archives留下了，其他都删掉了。</p>
-<p>设置About Me的方法是，首先在content文件夹下新建一个文件夹，该名称为pages，将你要写的内容，制作成.md格式的内容，注意文件开头格式是</p>
-<div class="highlight"><pre><span class="n">Title</span><span class="o">:</span> <span class="n">About</span> <span class="n">Me</span>
-<span class="n">Date</span><span class="o">:</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">15</span> 
-<span class="n">Category</span><span class="o">:</span> <span class="n">About</span> <span class="n">Me</span>
-</pre></div>
-
-
-<p>并且添加代码：</p>
-<div class="highlight"><pre><span class="n">ABOUT_URL</span>           <span class="o">=</span> <span class="s">&#39;pages/about-me&#39;</span>
-<span class="n">ABOUT_SAVE_AS</span>       <span class="o">=</span> <span class="s">&#39;pages/about-me.html&#39;</span>
-</pre></div>
-
-
-<p>以及在MENU_INTERNAL_PAGES中添加 ('About Me', ABOUT_URL, ABOUT_SAVE_AS),</p>
-<h5>添加评论功能</h5>
-<p>使用DISQUS注册个账号，然后要生成个shortname，并且在pelicanconf.py中添加如下代码就好了，注意jonym是我的shortname：</p>
-<div class="highlight"><pre><span class="n">DISQUS_SITENAME</span> <span class="o">=</span> <span class="s">u&quot;jonym&quot;</span>
-</pre></div>
-
-
-<p>但是首页的第一篇文章也出现了评论框，目前没解决。</p>
-<h5>部署在顶级域名上</h5>
-<p>这个事情那其实没什么必要，但是既然做就做彻底：
-- 第一步：需要购买个域名，很多文章都推荐使用国外的域名注册网站，我用的万网，阿里云旗下网站，也挺好的啊，也不用备案啊，英文实力不行或者墙总是翻不过去的或者没有国际信用卡的，用这个挺好；
-- 第二步：在github里项目的根目录下面添加一个名称为CNAME的文件，注意这个文件连后缀都不能有，里面也只能有一条就是你注册的域名，http和www都不用写；
-- 第三步：域名解析，在域名管理里面点击解析，要求输入IP，由于各种教程比较受到时间的影响，这哥们IP换过一次，我解析的时候用的是192.30.252.153，大家感觉有问题就上官网再查一下，有可能又有变化。</p>
-<h5>添加favicon图标</h5>
-<p>在本机测试的时候，总会告诉我们缺少两个名为favicon的文件.png的和.ico的，这是什么东西呢，其实就是在网址显示的旁边的极小的那个图标，做两个图标，放到根目录下面就好了，.ico的文件貌似需要在Win环境下完成，貌似先要生成.bmp文件，然后改后缀名。</p>
-<blockquote>
-<p>当然在Mac环境下肯定也有解决方案</p>
-</blockquote>
-<h5>添加404页面</h5>
-<p>404页面就是找不到了到那个页面，做一个名称为404.html 的文件然后放到根目录下面就可以了，如果你想要一个和整体主题一样，那就把生成的About Me的html文档复制一下改改就好了。</p>
-<p>目前能记得住的就这些坑了，大坑小坑一大堆，慢慢弄，这片文章对我来说纯是写给自己的，技术大哥们，求指导。</p>
-<h4>写这篇文章是的原因是不准备使用blue-penguin主题了</h4>
-<p>blue-penguin到目前我还没真正下定决心换掉，毕竟我很喜欢他的风格，而且花了不少心思的，但是这个blue-penguin主题自身非常不成熟，很多东西确实不知道怎么设置，比如设置在主页中文章的文字显示的长度，一直报错，更重要的是，这个主题并没有采用响应式的交互设计，虽然在手机上登录也没有问题，也挺好看的，接下来有可能换主题，希望喜欢用这个主题的朋友，本文能给到大家一点点的参考。
-本文所写时，所对应的文件github网址：<a href="https://github.com/jonym/Pelican-blue-penguin-jonymblog.git">https://github.com/jonym/Pelican-blue-penguin-jonymblog.git</a></p>
+<p>在博客已经算是落后产物的当下，选择做一个博客是个有趣的决定，一方面是因为秉承“做中学”的原则，总觉得既然想学点编程，总不能天天只看教程什么都不做，另一方面也确实发现随着 ...
                 <div class="clear"></div>
 
                 <div class="info">
@@ -286,133 +61,21 @@ make serve ＃各种生成，生成完以后就可以登陆localhost:8000登陆
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
-            </article>            <h4 class="date">Nov 17, 2015</h4>
+            </article>
+
+
+
+
+
+            <h4 class="date">Nov 17, 2015</h4>
 
             <article class="post">
                 <h2 class="title">
                     <a href="/ru-he-yin-dao-xue-sheng-chan-sheng-chuang-xin-chuang-ye-xiang-mu.html" rel="bookmark" title="Permanent Link to &quot;如何引导学生产生创新创业项目&quot;">如何引导学生产生创新创业项目</a>
                 </h2>
-
+                
                 <p>目前面向大学生的创新创业教育，越来越进入普及阶段，而带着项目学创业已经成为创业教育的共识，面对毫无创业想法与动机的学生，如何引导产生创业创业项目就成了一个核心的内容。<br>
-引导学生产生创业项目的方法，目前常用的为三种，这里介绍第一种：基于生活痛点的创业项目产生方法，在引导产生创业项目之前，我们首先要思考的是创业商机究竟从哪里来，其实无非是从生活中来，一个人的创业想法肯定是与他的先前经验有非常直接的关系，所以按照这种思路，将引导过程分为五步：<br>
-1.发现生活中的痛点<br>
-2.将发现的痛点进行分类<br>
-3.选择一个痛点并提出解决方案<br>
-4.各组分别展示创业项目<br>
-5.对创业项目进行投票<br></p>
-<h5>第一步：发现生活中的痛点</h5>
-<p>首先要求学生自由分组，小组人数1-3人，去发现生活中的痛点。</p>
-<blockquote>
-<p>课程要求创业团队是5个人为一组的，但是在这个环节如此设计是因为各组产生的创业项目质量都参差不齐，后期课程的内容均围绕该创业项目进行，项目的质量直接决定后续课程的质量，所以项目产生后需要通过投票的方式淘汰40%－50%，保证创业项目质量。</p>
-</blockquote>
-<p>什么是痛点，所谓痛点就是<strong>目标客户未被满足的需求或者未被解决打问题</strong>，简单说就是生活中遇到不如意的事情，比如孩子半夜起床哭闹，冲奶粉非常麻烦；主人出差不在家，宠物没有人喂养。这都是生活中的痛点，寻找痛点就是寻找生活中不如意的事情。<br>
-具体操作是，让学生将自己生活中遇到的问题写在一张纸上，形成痛点清单，在这个环节只写出痛点，不写解决方案，为了让学生深入思考，每人至少写出20个，虽然最终能写到20个点的人特别少。<br></p>
-<blockquote>
-<p>为了激发学生的潜力，可以适当加入些引导语，比如“最多有同学写出了42个生活中的痛点。”，“之前的班级平均每个人能写出30多个。”等等。</p>
-</blockquote>
-<p>这里要注意的是，在引导学生发现生活中的痛点时，一定是基于某一场景下产生的痛点，学生经常会提出例如我懒或者我没钱花等等，这种痛点都是没有场景的，属于一种状态而不是痛点，把我懒放在具体的场景下，比如我中午吃饭时不愿意排队浪费时间，这就是一个有场景的痛点。</p>
-<h5>第二步：将发现的痛点进行分类</h5>
-<p>将所有的痛点分为两类，<strong>共性的</strong>与<strong>个性的</strong>。所谓共性的痛点就是在相对大的群体中都会有的痛点，所谓个性的痛点就是仅有极个别人或组织才会有的痛点，那我们在选择创业机会的时候是应该针对共性的痛点，还是个性的痛点呢？学生会不假思索的回答共性的。但是这个判断并不完全正确，商业有两种方式，一种是客户群体非常庞大，但是每一个客户只能带来很少的利润，另一种是客户群体非常少，但是每一个客户都能给你带来充足的利润。不过作为大学生创业来讲，针对共性的特点去设计解决方案，往往比较容易操作。</p>
-<h5>第三步：选择一个痛点并提出解决方案</h5>
-<p>解决方案基本的形态有两种，<strong>产品</strong>或者<strong>服务</strong>，举一个例子，你现在要解决的是毛衣起球的问题，你有可能设计一款产品，比如一个电动剃毛器，也可能是一项衣物护理的服务，但是创业者作为一个问题的解决者，不能用要求的方式去解决某类痛点，比如学校餐厅的饭难吃怎么办？答：学校做的好吃点；女厕所总是不够用怎么办？答：学校多建设点女厕所。这的确是课堂上经常出现的回答，也许是由于初期对学生的引导不够充分，但是这里一定要补充说明，不能用要求别人的方式去解决某个痛点。</p>
-<h5>第四步：各组分别展示创业项目</h5>
-<p>要求各组项目发起人介绍自己的创业项目，描述的内容包括三项：<br>
-1.项目的名称。<br>
-2.解决的痛点。<br>
-3.解决方案。<br>
-时间严格控制在1分钟之内，也属于一次电梯演讲训练。</p>
-<blockquote>
-<p>电梯演讲（Elevator Pitch）是指在乘电梯的过程中，用你的信念和热情对你的创业公司和商业计划书进行简洁地、熟练地描述，让天使投资人很容易理解。<br>
-<a href="http://www.zhaonew.com/bstong/how-to-tell-your-business-story-in-60-seconds-or-less/">http://www.zhaonew.com/bstong/how-to-tell-your-business-story-in-60-seconds-or-less/</a></p>
-</blockquote>
-<p>如果条件允许，可以对演讲超时的人进行惩罚。</p>
-<blockquote>
-<p>有人购买玩具枪，子弹是软质的，或者水枪，对超时学生进行射击。</p>
-</blockquote>
-<h5>第五步：对创业项目进行投票</h5>
-<p>所有对学生对创业项目进行投票，投票数量需要设置上限，比如每人只有三票，并且不允许给自己的项目投票。具体操作可以借助软件，当然有一种简单的操作方式，所有的创业项目都写在一张A4纸上，给学生们发不干胶圆点贴纸，让学生将贴纸贴在项目上，代表投票。将所有投票排名靠前的项目成为正式入选的项目，项目发起人成为创业团队的负责人。<br>
-这里有两个问题需要注意：<br>
-1.由于人际关系或者其他的原因，很多很好的项目无法被入选，而很多并不优秀的项目入选，这时教师可以适当介入。<br>
-2.那些没被选上的项目是否就不能做了呢，也不绝对，如果项目发起人有强烈的意愿，在团队组建的环节能凑够足够的人数，也可以将项目继续下去。</p>
-<hr />
-<h3>那么通过这种方式能引导出怎样的创业项目呢？</h3>
-<p>下面我举一次课堂实例，本次课堂的学生来自河北科技大学财务管理专业大三的学生，在90分钟的时间内，引导50名学生共产生21个创业项目，内容如下：</p>
-<h6>项目一：淑梳</h6>
-<p>痛点：女生头发容易出油，又不想每天早起洗头<br>
-解决方案：设计出一种电动梳子，（可电池，可充电，方便随时使用）。梳子齿较密，这样可以接触到每一丝头发。通过振动方式起到作用，在柄部有加入去油的物质达到净化的目的，略带香气。<br>
-梳子最主要的功能是去油。辅助柔顺，滋养头发。<br>
-优点，极大满足女生的爱美之心，随时展现自己最好的一面，满足女生的懒惰，合理时间内缩减洗头次数。</p>
-<h6>项目二：学霸笔记本</h6>
-<p>痛点：挂科很痛苦的好嘛，现行的课程软件都没有专门交流学习内容的地点，现实学习生活则需要可为学霸学渣之间的交流提供方便的平台。<br>
-解决方案：大学期间没有挂过科的比比皆是，为了减少挂科现象和促进良好学习氛围的形成，可以利用网络的便捷性专门设置APP，用以分享学霸们的笔记本供大家使用和交流，学霸们可以通过APP这个平台分享课程精髓，并标明课程程序号提供相应的内容，APP运行商则会根据贡献度打赏分享者购物券等奖品。</p>
-<h6>项目三：厨房导航</h6>
-<p>痛点：在做不熟悉菜时，利用书籍手机等工具查看菜谱使用极为不便<br>
-解决方案：为防止厨房油烟污染，将厨房导航与抽油烟机设为一体<br>
-理念：让做饭便捷起来，防油污，成本低<br>
-外观：内嵌式，玻璃面，位于抽油烟机上方简洁大方，节省空间<br>
-结构：主板，显示屏，听筒，话筒<br>
-功能：可连接室内WiFi与手机资源共享，自带菜谱可联网更新，有时钟功能，含语音助手，带播放功能</p>
-<h6>项目四：健康美食APP</h6>
-<p>痛点：每到吃饭时，不知如何合理安排健康的饮食，从而导致身体肥胖，营养不均衡。<br>
-解决方案：根据人体膳食结构，我们每日推出简单方便的营养菜单，并且有其烹饪方法的详细介绍。如您没有充足的时间来买菜，也可在此订购各种蔬菜及水果，送货上门，保证新鲜。另根据个人特点，还提供特色减肥餐、病号餐、儿童餐、老人餐等个人套餐，还有营养师可以在线为您解决个人问题。并可根据您每日摄入的食物种类及数量，计算每日所吸收的营养成分含量，并制定相应运动计划，是您保持健康的身体。</p>
-<h6>项目五：掌上兼职 (APP)</h6>
-<p>痛点：为大学生找兼职提供正规平台<br>
-解决方案：开发或推广一款精美高效的兼职APP，信息来源必须可靠、有保障，发放信息及时且有规律，通过实名认证的客户才能在上面发放兼职信息，兼职信息必须真实、准确，按时发放工资，不能拖延；求职人员也需实名认证后才能获得兼职机会，高效认真的完成工作，如出现工资不发放或求职者被骗，APP开发中心应予以相应补偿，除此之外，对初次注册并使用该APP的求职人员，APP研发中心给予红包奖励，并可记录注册者的空闲时间，定期向此求职人员发放短信介绍兼职，每次通过此APP做兼职结束后采用评价方式给求职者升级，级别越高的求职者下次求职的成功率越高，求得兼职的工资也会越高！</p>
-<h6>项目六：DIY面膜坊</h6>
-<p>痛点：在”假面膜”，”毒面膜”猖狂的当今社会，人们开始追求天然的，原始的放心面膜，自制面膜应运而生。<br>
-解决方案：面膜商店随处可见，但是专营自制纯天然的面膜店却少之又少。市场上卖的面膜质量参差不齐，不合格的产品非常多，出现多起“毒面膜害人事件”，为了让广大女性拥有水嫩白皙的皮肤并且可以免受毒面膜的伤害，我们小组认为创办一家专营纯天然面膜的店铺是非常有潜力的。这个店铺主要是针对在校大学生和白领人群以及想自己做面膜但是又没时间或没方法的广大女性，原料都是天然的水果和植物，价格低廉，而且只需要培养一些服务人员掌握基本制作方法，避免某些过敏问题，就可以生产运营了，成本低，天然健康，有市场。</p>
-<h6>项目七：涡轮O型血</h6>
-<p>痛点：1.个人创业，缺少资金；2.可以使闲置资金尽量得到最大化的收益。<br>
-解决方案：某些大学生创业并没有足够的资金支持，那么你拿你的计划以及所拥有的资源等等来让大众进行评判，各种人都可以，你觉得靠谱就可以投资，哪怕100块也行，但是要除去资本公积，也就是说你光掏钱就得到所占利益的百分比是不公平的，因为你并没有付出劳动，所以要减去一些所得，为某些你觉得好的大学生项目进行投资，（其实这也是众筹的一种）。但是，我们所想要做的只是一部分市场，给那些有想法却没有足够资金的年轻人一个机会，给予他们足够的血液去为他们提供运转的能量，统称为“O型血计划”。<br>
-投资者得到的是分红以及可能的股价变动收益（统称为涡轮计划）所以这是一个双向收益面，集筹资理财两方面的项目。</p>
-<h6>项目八：友钱乐</h6>
-<p>痛点：通过一对一的金钱交易解决校园生活中同学们的各种不便。<br>
-解决方案：我们想通过一个网站或者手机软件来构建一个这样的平台：在学校相对安全的大环境下，进行同学间的实时交易。例如：我不想拿快递的时候可以在软件上提出自己的要求，软件平台会筛选相关用户来进行抢单。不仅是拿快递，只要你想，只要你有（挣）钱，只要有人愿意接单，什么要求都可以，而且实时性高，安全性强。</p>
-<h6>项目九：保卫包包（背包报警系统）</h6>
-<p>痛点：包包背在身上，被小偷划开或拉开拉链盗取物品而浑然不知<br>
-解决方案：通过现代指纹识别技术以及app的广泛应用，设计一款类似背包挂件外形的防盗利器，该款挂件不仅可以根据个人喜好定制出喜欢的外形，还可连接我们的电脑，手机，采用太阳能和电充两种充电方式，该款挂件可录入十个人的指纹，一旦有陌生指纹触碰到该挂件，立刻发出警报声，如有忘记包包，令人代拿的情况，只需远程登录app解除警报即可，app采用账号密码登录，同时还推出加强版，增加一个报警提醒方式，附带手环，当发出警报时，手环会发出震动，提醒包包主人。</p>
-<h6>项目十：失物招领校园网站</h6>
-<p>痛点：学校失物招领信息滞后，没有相关网站,所以要办一个失物招领网站<br>
-解决方案：我们会设计一个校园失物招领网，在那个网站上会有丢失物品的图片和丢失者的相关信息，相应的，我们也有拾物者上传的物品的图片和他自己的信息，以便于他们相互交流。</p>
-<h6>项目十一：动热能环保随身电源</h6>
-<p>痛点：现有移动充电设备无法满足多次循环长时间充电使用<br>
-解决方案：针对现有市面的移动电源所存在充电次数有限、携带不便等问题，我们创新了一款动热能转化为电能、易于携带、随时充电的新型电源。它包括可拆卸动热能新型电源和配套保温杯。①利用保温杯中热水所产生的能量经过我们的创新产品转换成电能②也可将保温杯底部的新型电源拆下，依附人运动所产生的动能转换成电能。</p>
-<h6>项目十二：心理咨询室</h6>
-<p>痛点：当今社会生活节奏加快，压力过大，心理问题过多难以解决。<br>
-解决方案：建立心理咨询室，共包括两个部分：网上咨询和实体店咨询。网上咨询主要是针对那些无法跨越心理障碍而又难以自己解决困惑的人开展的，当逐渐引导其正确面对问题后，要进一步面对面的治疗，从而进入到实体店面的咨询。而且在网上治疗阶段，可以根据医师的指导购买药品进行治疗。</p>
-<h6>项目十三：Do It Yourself</h6>
-<p>痛点：在餐厅，由于学生口味各异，很难吃到满意的食物<br>
-解决方案：我们的方案是为学生提供一个DIY餐厅平台，自己动手丰衣足食，享受制作过程的快乐。我们是以完美的厨房设备为基础，通过“量贩式”经管和独特的场景设计，为不同的顾客提供不同的贴心服务。我们的服务模式是：快乐的厨房体验=个性烹饪+创意点餐+DIY个性礼品+特色服务，以DIY温馨厨房和DIY成果展等特色细节增加餐厅情调。</p>
-<h6>项目十四：大神攻略</h6>
-<p>痛点：想提升自身游戏操作水平或游戏到一定关卡不能过关时，网上不能很迅速的找到相关讲解视频，非常繁琐<br>
-解决方案：将大量的游戏操作与讲解视频放入这给手机app中，分类规划整理它们。无论是联网游戏讲解还是单机游戏讲解，只要输入要查找的游戏名称就会弹跳出相关视频，供玩家观看了解。</p>
-<h6>项目十五：为您提供最便捷经济的面试服务</h6>
-<p>痛点：应试者到外地面试费时费力费钱，还可能丧失其他面试机会<br>
-解决方案：针对面试者到外地面试时会出现路途遥远，耗费时间和精力，而且外出开销较大，此外，可能还会因舟车劳顿而影响面试的正常发挥的问题，我们从面试者的角度出发，旨在为给面试者提供最便捷和最经济的面试服务，所以我们提出创立一个全国范围的面试代理机构，让面试者在居住地便可参加相应公司的面试，从而节省了时间和金钱，也增加了更多的面试机会；另一方面也为该公司人力资源部分担了面试任务，使其以最快的方式找到最符合公司需求的优秀人才，得到公司的认可。</p>
-<h6>项目十六：坐不怕，不怕坐</h6>
-<p>痛点：在我们的周围有许多人因为患有晕动症，对坐车产生了恐惧心理，也因此丧失了许多与世界接触的机会，这给他们造成了很大的困扰。<br>
-解决方案：我们专门为患有晕动症的人设计了一种坐垫，跟平时的垫子外表没有多大区别，但是把它放到汽车的座位上，当汽车发动时，坐垫会发挥它的功能，使坐在它上面的人产生一种非常舒服的感觉，并且很快进入睡眠状态。这种坐垫还有定位功能，可以设置出发地与目的地，将要到达目的地时坐垫会发出声音来唤醒它的主人。</p>
-<h6>项目十七：money去哪儿了</h6>
-<p>痛点：一些月光族，不爱记账，对资金无规划，花钱如流水，无法对资金进行合理利用<br>
-解决方案：这是一款服务型App～名字叫moeny去哪了，大家以后都有工资也可能会有房贷和银行卡透支各方面的问题～如何利用你手里的钱去投资，去进行衣食住行的消费，如何处理债务，这款app将收纳你这个月所有收入和支出的明细，通过你每月可控(资金，债务，或银行卡透支)和不可控(现金债务或银行卡透支)的选择，给您制订下个月理性的资金利用计划，达到资金的更有效利用，里面还可以设置你未来的收入对自己起到激励作用，里面有衣食住行社区和投资社区，前者包括购物美食美租旅行等等后者包括理财产品推荐和群聊，每月还会评出资金利用小冠军。</p>
-<h6>项目十八：玩转校园APP</h6>
-<p>痛点：现在大学校园生活丰富多彩，然后作为大学生的一员，我们不能够及时了解学校近期的娱乐，比赛和招聘等活动，进而让我们失去了好多展示自己的机会。<br>
-解决方案：1.市场背景：在科技化的现在，大量的APP闯进我们的生活，我们随时都在使用，APP有很大的开发市场。<br>
-2.目标群体：各大高校的学生<br>
-3.产品简介：针对学生不能及时了解并参与学校各项活动这一缺憾，我们推出“玩转校园”APP，利用它我们可以随时随地的接收到校内信息，并进行报名，让人们再不用担心因为信息提供不及时而错失展现自我的机会。</p>
-<h6>项目十九：购票app  new</h6>
-<p>痛点：现阶段老人和工人们买票难的问题成为趋势，不能灵活使用app订票，不认识字以及根本不知道怎么输入所需要的相关信息，以至于只能去购票窗口排队购买，这样既费时费力，对于老人和农民工不能在网上及时购票而导致上车后不管路程多远都是站票，所以为了解决这个问题，我们小组针对这两大人群制定了购票app new来解决购票难问题。 <br>
-解决方案：针对以上人群，我们制定了语音购票app，在这里，只要你有手机，就可以下载本app。而且，你如果想购票，打开app界面，便可得到app的语音购票指示，说出始发地和目的地，进入下一语音步骤，说出相关信息就可方便购票。</p>
-<h6>项目二十：助跑盲人</h6>
-<p>痛点：盲人生活范围有限，导盲犬引导路线有限，导盲犬训练时间长，磨合期长，成本高，狗狗的寿命有限，很容易与盲人产生感情。<br>
-解决方案：作为创业者，我们建立盲人助跑机构（中间机构），我们利用现有的导盲鞋技术和导盲犬培训机构（合作伙伴），完美的把导盲鞋和导盲犬结合，为盲人提供更便捷的服务。<br>
-出于导盲犬的各种弊端，我们打算研发具有声纳系统的导盲鞋，使盲人可以更便捷的出行。</p>
-<h6>项目二十一：可拆卸、可拉式DIY宿舍床底收纳箱</h6>
-<p>痛点：女生的小东西多，衣服种类多，原来的宿舍空间已经不能满足需求，放在床上太乱，放在床的一侧会减少活动空间，如何利用床底空间合理的收纳自己的宝贝呢<br>
-解决方案：充分利用床底空间，卖家可根据顾客的要求定制收纳箱，同时我们的独特之处在于可以推拉，可以自己拆卸，方便安装，节省了找东西的时间，减少了放东西的空间，不用整箱东西搬来搬去，也不用半天找不到自己心爱的东东。让妹子们不仅外表美，也是整理的小能手哦！材料分两种：塑料和木材（塑料成本低，轻便，防潮防水；木材经久耐用）。</p>
-<blockquote>
-<p>这种创业项目引导方式比较简单，适用于先设计创业项目，后成立创业团队的模式。</p>
-</blockquote>
+引导学生产生创业项目的方法，目前常用的为三种，这里介绍第一种：基于生活痛点的创业项目产生方法，在引导产生创业项目之前，我们首先要思考的是创业商机究竟从哪里来，其实无非是从生活中来，一个人的创业想法肯定是与他的先前 ...
                 <div class="clear"></div>
 
                 <div class="info">
@@ -433,24 +96,20 @@ make serve ＃各种生成，生成完以后就可以登陆localhost:8000登陆
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
-            </article>            <h4 class="date">Nov 15, 2015</h4>
+            </article>
+
+
+
+
+
+            <h4 class="date">Nov 15, 2015</h4>
 
             <article class="post">
                 <h2 class="title">
                     <a href="/zhe-ge-blogde-ji-ben-yong-fa.html" rel="bookmark" title="Permanent Link to &quot;这个Blog的基本用法&quot;">这个Blog的基本用法</a>
                 </h2>
-
-                <h2>博客都已经有了，那计划如何使用呢？</h2>
-<p>初步的想法，每个星期写一篇文章，文章分为四类：爱生活、会工作、涨姿势、学技能。</p>
-<h3>爱生活</h3>
-<p>爱生活主要写生活中发生的相关事情，生活中的心得与感悟，牢骚与吐槽，生活总是美好，怎么有理由不去爱呢。</p>
-<h3>会工作</h3>
-<p>工作需要有沉淀，记录工作中的所思所想，沉淀技能，既可以让自己有所积累，也能给同事以参考，建立工作上的知识管理体系。</p>
-<h3>涨姿势</h3>
-<p>书还是要读的，讲座还是要听的，不做记录么，一直连个读书笔记都没写明白，这次还不来个痛快。</p>
-<h3>学技能</h3>
-<p>你以为我只学了如何写代码么，别天真了，我可是产品经理诶，一项技能怎么够，最爱的乐谱，最棒的剧本，通通收进来。</p>
-<p>还等什么，这次写个痛快。</p>
+                
+                <p>博客都已经有了，那计划如何使用呢？初步的想法，每个星期写一篇文章，文章分为四类：爱生活、会工作、涨姿势、学技能。</p>
                 <div class="clear"></div>
 
                 <div class="info">
@@ -472,41 +131,18 @@ make serve ＃各种生成，生成完以后就可以登陆localhost:8000登陆
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
             </article>
+
+
+
+
+
+
             <article class="post">
                 <h2 class="title">
                     <a href="/wei-shi-yao-yao-gei-zi-ji-jian-yi-ge-blog.html" rel="bookmark" title="Permanent Link to &quot;为什么要给自己建一个Blog&quot;">为什么要给自己建一个Blog</a>
                 </h2>
-
-                <h2>这个是一个严肃的问题</h2>
-<p>我是一个顶着产品经理头衔的培训师，严格意义上在做这个博客之前，我的计算机水平停留在大学的书本上，但真正的写代码，我是一点都不会。</p>
-<blockquote>
-<p>是的，我是信息管理与信息系统专业毕业的，无论是C语言、JAVA还是SQL，我都没挂科</p>
-</blockquote>
-<p>直到有一天，我认识了这样一个人：</p>
-<p>小马：勾哥，你写代码太帅了，收下我的膝盖。<br>
-小勾：呵呵哒，我对编程天生有感觉。<br>
-小马：我要学，我要学！！<br>
-小勾：给你个教程自己看去吧。<br>
--python-HTML-CSS-小马阵亡。。。<br></p>
-<p>小勾：小马，我这里有款装逼神器，你要不要看一下啊？<br>
-小马：我要，我要。<br>
-小勾：这是我的BLOG，是不是很牛逼。<br>
-小马：我也要弄，我也要弄。<br>
-小勾：我是用github.io+Jekyll弄的，给你个教程自己看去吧。<br>
--github-Jekyll<br>
--Ruby（说好的python呢，搞不定）<br>
--Pelican-theme-小马阵亡。。。<br></p>
-<p>小马：勾哥，来个vim的教程。<br>
-小勾：你是没有程序员的命，却得了程序员的病。<br>
-小马：~~~<br></p>
-<p>小马：看看看，这是最新的页面。<br>
-小勾：你挺能折腾。<br>
-小马：看看看，这是更新的页面。<br>
-小勾：你接着折腾。<br>
-小马：耶，成功了~~<br>
-从10月16日到11月15日，认识小勾整一个月，自己建了一个博客，超有成就感，有时候，有人告诉你方向，比你自己傻傻努力要有效的多，至少你知道这个路能走通，能走通的路就值得坚定不移的向前走。</p>
-<p>另外还没有回答，为什么要给自己建一个Blog：<br>
-都说了是装逼神器，装逼神器还能干啥。</p>
+                
+                <p>这个是一个严肃的问题，我是一个顶着产品经理头衔的培训师，严格意义上在做这个博客之前，我的计算机水平停留在大学的书本上，但真正的写代码，我是一点都不会。</p>
                 <div class="clear"></div>
 
                 <div class="info">
@@ -527,18 +163,20 @@ make serve ＃各种生成，生成完以后就可以登陆localhost:8000登陆
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
-            </article>            <h4 class="date">Nov 13, 2015</h4>
+            </article>
+
+
+
+
+
+            <h4 class="date">Nov 13, 2015</h4>
 
             <article class="post">
                 <h2 class="title">
                     <a href="/ye-xu-zhe-jiu-shi-jian-chi-de-yi-yi.html" rel="bookmark" title="Permanent Link to &quot;也许这就是坚持的意义&quot;">也许这就是坚持的意义</a>
                 </h2>
-
-                <h2>一万次想放弃，却终究还是不舍得</h2>
-<p>这个页面来的不容易</p>
-<blockquote>
-<p>pelican+github pages+其他的乱七八糟</p>
-</blockquote>
+                
+                <p>这是本博客的第一篇文章，也是一篇测试文章。</p>
                 <div class="clear"></div>
 
                 <div class="info">
@@ -561,6 +199,8 @@ make serve ＃各种生成，生成完以后就可以登陆localhost:8000登陆
 
             </article>
 
+
+
             <div class="clear"></div>
             <footer>
                 <p>
@@ -579,5 +219,15 @@ make serve ＃各种生成，生成完以后就可以登陆localhost:8000登陆
         </div>
         <div class="clear"></div>
     </div>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+     
+     ga('create', 'UA-70462360-1', 'auto');
+     ga('send', 'pageview');
+     
+    </script>
 </body>
 </html>
