@@ -230,19 +230,15 @@ make serve ＃各种生成，生成完以后就可以登陆localhost:8000登陆
 &lt;p&gt;目前能记得住的就这些坑了，大坑小坑一大堆，慢慢弄，这片文章对我来说纯是写给自己的，技术大哥们，求指导。&lt;/p&gt;
 &lt;h4&gt;写这篇文章是的原因是不准备使用blue-penguin主题了&lt;/h4&gt;
 &lt;p&gt;blue-penguin到目前我还没真正下定决心换掉，毕竟我很喜欢他的风格，而且花了不少心思的，但是这个blue-penguin主题自身非常不成熟，很多东西确实不知道怎么设置，比如设置在主页中文章的文字显示的长度，一直报错，更重要的是，这个主题并没有采用响应式的交互设计，虽然在手机上登录也没有问题，也挺好看的，接下来有可能换主题，希望喜欢用这个主题的朋友，本文能给到大家一点点的参考。
-本文所写时，所对应的文件github网址：&lt;a href="https://github.com/jonym/Pelican-blue-penguin-jonymblog.git"&gt;https://github.com/jonym/Pelican-blue-penguin-jonymblog.git&lt;/a&gt;&lt;/p&gt;</summary><category term="编程"></category></entry><entry><title>这个Blog的基本用法</title><link href="/zhe-ge-blogde-ji-ben-yong-fa.html" rel="alternate"></link><updated>2015-11-15T21:13:00+08:00</updated><author><name>Jonym</name></author><id>tag:,2015-11-15:zhe-ge-blogde-ji-ben-yong-fa.html</id><summary type="html">&lt;h2&gt;博客都已经有了，那计划如何使用呢？&lt;/h2&gt;
-&lt;p&gt;初步的想法，每个星期写一篇文章，文章分为四类：爱生活、会工作、涨姿势、学技能。&lt;/p&gt;
-&lt;h3&gt;爱生活&lt;/h3&gt;
+本文所写时，所对应的文件github网址：&lt;a href="https://github.com/jonym/Pelican-blue-penguin-jonymblog.git"&gt;https://github.com/jonym/Pelican-blue-penguin-jonymblog.git&lt;/a&gt;&lt;/p&gt;</summary><category term="编程"></category></entry><entry><title>这个Blog的基本用法</title><link href="/zhe-ge-blogde-ji-ben-yong-fa.html" rel="alternate"></link><updated>2015-11-15T21:13:00+08:00</updated><author><name>Jonym</name></author><id>tag:,2015-11-15:zhe-ge-blogde-ji-ben-yong-fa.html</id><summary type="html">&lt;h4&gt;爱生活&lt;/h4&gt;
 &lt;p&gt;爱生活主要写生活中发生的相关事情，生活中的心得与感悟，牢骚与吐槽，生活总是美好，怎么有理由不去爱呢。&lt;/p&gt;
-&lt;h3&gt;会工作&lt;/h3&gt;
+&lt;h4&gt;会工作&lt;/h4&gt;
 &lt;p&gt;工作需要有沉淀，记录工作中的所思所想，沉淀技能，既可以让自己有所积累，也能给同事以参考，建立工作上的知识管理体系。&lt;/p&gt;
-&lt;h3&gt;涨姿势&lt;/h3&gt;
+&lt;h4&gt;涨姿势&lt;/h4&gt;
 &lt;p&gt;书还是要读的，讲座还是要听的，不做记录么，一直连个读书笔记都没写明白，这次还不来个痛快。&lt;/p&gt;
-&lt;h3&gt;学技能&lt;/h3&gt;
+&lt;h4&gt;学技能&lt;/h4&gt;
 &lt;p&gt;你以为我只学了如何写代码么，别天真了，我可是产品经理诶，一项技能怎么够，最爱的乐谱，最棒的剧本，通通收进来。&lt;/p&gt;
-&lt;p&gt;还等什么，这次写个痛快。&lt;/p&gt;</summary><category term="博客"></category></entry><entry><title>为什么要给自己建一个Blog</title><link href="/wei-shi-yao-yao-gei-zi-ji-jian-yi-ge-blog.html" rel="alternate"></link><updated>2015-11-15T14:58:00+08:00</updated><author><name>Jonym</name></author><id>tag:,2015-11-15:wei-shi-yao-yao-gei-zi-ji-jian-yi-ge-blog.html</id><summary type="html">&lt;h2&gt;这个是一个严肃的问题&lt;/h2&gt;
-&lt;p&gt;我是一个顶着产品经理头衔的培训师，严格意义上在做这个博客之前，我的计算机水平停留在大学的书本上，但真正的写代码，我是一点都不会。&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;p&gt;还等什么，这次写个痛快。&lt;/p&gt;</summary><category term="博客"></category></entry><entry><title>为什么要给自己建一个Blog</title><link href="/wei-shi-yao-yao-gei-zi-ji-jian-yi-ge-blog.html" rel="alternate"></link><updated>2015-11-15T14:58:00+08:00</updated><author><name>Jonym</name></author><id>tag:,2015-11-15:wei-shi-yao-yao-gei-zi-ji-jian-yi-ge-blog.html</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;是的，我是信息管理与信息系统专业毕业的，无论是C语言、JAVA还是SQL，我都没挂科&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;直到有一天，我认识了这样一个人：&lt;/p&gt;
