@@ -1,5 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>小马的杂货铺</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2015-11-21T22:10:00+08:00</updated><entry><title>在Pelican下使用blue-penguin的小心得</title><link href="/zai-pelicanxia-shi-yong-blue-penguinde-xiao-xin-de.html" rel="alternate"></link><updated>2015-11-21T22:10:00+08:00</updated><author><name>Jonym</name></author><id>tag:,2015-11-21:zai-pelicanxia-shi-yong-blue-penguinde-xiao-xin-de.html</id><summary type="html">&lt;h4&gt;选择Pelican编写博客都原因&lt;/h4&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>小马的杂货铺</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2015-11-23T21:20:00+08:00</updated><entry><title>在Pelican下使用blue-penguin的小心得（续）</title><link href="/zai-pelicanxia-shi-yong-blue-penguinde-xiao-xin-de-xu.html" rel="alternate"></link><updated>2015-11-23T21:20:00+08:00</updated><author><name>Jonym</name></author><id>tag:,2015-11-23:zai-pelicanxia-shi-yong-blue-penguinde-xiao-xin-de-xu.html</id><summary type="html">&lt;p&gt;本来是要换掉blue-penguin这个主题换成pelican-clean-blog或者pure，但事实上每一个主题都有自己的缺陷，当我实在没有办法的时候，终于还是决定继续使用这个主题，并且打开Google搜索“如何制作pelican theme”，然后决定自己修改这个主题，后来发现其实也没有太难，两天的时间基本上都搞定了，下面来说一下我都修改了些什么内容。
+本来是要换掉blue-penguin这个主题换成pelican-clean-blog或者pure，但事实上每一个主题都有自己的缺陷，当我实在没有办法的时候，终于还是决定继续使用这个主题，并且打开Google搜索“如何制作pelican theme”，然后决定自己修改这个主题，后来发现其实也没有太难，两天的时间基本上都搞定了，下面来说一下我都修改了些什么内容。
+本来是要换掉blue-penguin这个主题换成pelican-clean-blog或者pure，但事实上每一个主题都有自己的缺陷，当我实在没有办法的时候，终于还是决定继续使用这个主题，并且打开Google搜索“如何制作pelican theme”，然后决定自己修改这个主题，后来发现其实也没有太难，两天的时间基本上都搞定了，下面来说一下我都修改了些什么内容。&lt;/p&gt;
+&lt;p&gt;那么我们先来看一下，theme的文档结构是怎样的。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;├── static
+│   ├── css
+│   └── images
+└── templates
+    ├── archives.html         // 显示归类
+    ├── period_archives.html  // 按照日期归类
+    ├── article.html          // 文章处理
+    ├── author.html           // 作者处理
+    ├── authors.html          // 列出所有文章的作者
+    ├── categories.html       // 分类汇总
+    ├── category.html         // 分类处理
+    ├── index.html            // 首页显示所有文章
+    ├── page.html             // 页面处理
+    ├── tag.html              // 标签处理
+    └── tags.html             // 标签汇总，生成云标签
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;blockquote&gt;
+&lt;p&gt;内容引自&lt;a href="http://pelican-docs-zh-cn.readthedocs.org/en/latest/themes.html"&gt;http://pelican-docs-zh-cn.readthedocs.org/en/latest/themes.html&lt;/a&gt;，与主题不完全符合，意思理解即可。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;在主页中使用摘要&lt;/h4&gt;
+&lt;p&gt;blue-penguin的主界面是显示全部文章内容，有人说不能使用Pelican不能使用摘要功能，只能截取固定字数的文字作为摘要，其实完全不是，我们先来看一下&lt;code&gt;templates&lt;/code&gt;文件夹下的&lt;code&gt;index.html&lt;/code&gt;是怎么写的。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;{% extends &amp;quot;base.html&amp;quot; %}
+
+{% block content %}
+{% set date = None %}
+{% for article in articles_page.object_list %}
+{%   if date != article.date.date() %}
+{%     set first_article_of_day = True %}
+{%   else %}
+{%     set first_article_of_day = False %}
+{%   endif %}
+{%   set date = article.date.date() %}
+{%   include &amp;quot;article_stub.html&amp;quot; %}
+{% endfor %}
+
+{% include &amp;quot;pagination.html&amp;quot; %}
+{% endblock %}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;注意&lt;code&gt;{%   include "article_stub.html" %}&lt;/code&gt;,内容显示他直接引用的博客正文的内容，也太懒点了吧，看了看别人都是怎么写的最后做了如下的设计，不能直接改动&lt;code&gt;article_stub.html&lt;/code&gt;,不然博客文章也都出问题，首先复制&lt;code&gt;templates&lt;/code&gt;文件夹下的&lt;code&gt;article_stub.html&lt;/code&gt;，并将其改名为&lt;code&gt;index_stub.html&lt;/code&gt;，然后将&lt;code&gt;templates&lt;/code&gt;文件夹下的&lt;code&gt;index.html&lt;/code&gt;中&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;{%   include &amp;quot;article_stub.html&amp;quot; %}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;改为&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;{%   include &amp;quot;index_stub.html&amp;quot; %}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后去修改&lt;code&gt;index_stub.html&lt;/code&gt;文件，将&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;{{ article.content }}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;改为&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;{% if article.summary %}
+{{ article.summary|truncate(200) }}
+{% endif %}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果用markdown里面加入summary，那么主页将显示summary内容，如果没有，将会取文章前200个字符，当然200时通过&lt;code&gt;truncate(200)&lt;/code&gt;定义的，可以改，这里要注意的是如果食用摘要功能，在正文中需要再写一次，进入正文后无法看到摘要。
+除此之外，还有一个重要的点就是在&lt;code&gt;index_stub.html&lt;/code&gt;中需要删除倒数第二行代码&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;{% include &amp;quot;disqus.html&amp;quot; %}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;否则如果添加disqus的评论功能，主页会出现评论项目。&lt;/p&gt;
+&lt;h4&gt;修复网站标题与home按钮点击无法正常回到主页&lt;/h4&gt;
+&lt;p&gt;上篇文章说过这个问题，我做了一个假的Home，但是假的就是假的，还是想弄成真的，其实真正做起来也没有太难，关键是找对地方。打开打开&lt;code&gt;templates&lt;/code&gt;文件夹下的&lt;code&gt;base.html&lt;/code&gt;，找到如下两段代码：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;{% if DISPLAY_HOME or DISPLAY_HOME is not defined %}
+    &lt;span class="nt"&gt;&amp;lt;li&lt;/span&gt;&lt;span class="err"&gt;{%&lt;/span&gt; &lt;span class="na"&gt;if&lt;/span&gt; &lt;span class="na"&gt;output_file =&lt;/span&gt;&lt;span class="s"&gt;=&lt;/span&gt; &lt;span class="err"&gt;&amp;quot;&lt;/span&gt;&lt;span class="na"&gt;index&lt;/span&gt;&lt;span class="err"&gt;.&lt;/span&gt;&lt;span class="na"&gt;html&lt;/span&gt;&lt;span class="err"&gt;&amp;quot;&lt;/span&gt; &lt;span class="err"&gt;%}&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;selected&amp;quot;&lt;/span&gt;&lt;span class="err"&gt;{%&lt;/span&gt; &lt;span class="na"&gt;endif&lt;/span&gt; &lt;span class="err"&gt;%}&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;{{ SITEURL }}&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Home&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+ {% endif %}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;以及&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;header_box&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;h1&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;{{ SITEURL }}&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;{{ SITENAME }}&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+        {% if SITESUBTITLE %}
+    &lt;span class="nt"&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;{{ SITESUBTITLE }}&lt;span class="nt"&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
+    {% endif %}
+&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;第一段对应是Home，第二段对应的是博客的主标题，两个的改法相同，将&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;href=&amp;quot;{{ SITEURL }}&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;改成&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;href=&amp;quot;../..&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;就可以了。
+在第二段代码中我们还发现了添加副标题的功能，可以在配置文件&lt;code&gt;pelicanconf.py&lt;/code&gt;中添加一段比如&lt;code&gt;SITESUBTITLE = u"JonyM's Blog"&lt;/code&gt;效果相当漂亮，谁用谁知道。&lt;/p&gt;
+&lt;h4&gt;修改底部文字&lt;/h4&gt;
+&lt;p&gt;官方给到到底部文字始终是&lt;code&gt;Blue Penguin Theme · Powered by Pelican · Atom Feed&lt;/code&gt;如果想添加一些关于自己的标记，版权声明，甚至备案如何做呢？方法是，打开&lt;code&gt;templates&lt;/code&gt;文件夹下的&lt;code&gt;base.html&lt;/code&gt;，找到如下代码：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;footer&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://github.com/jody-frankowski/blue-penguin&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Blue Penguin&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt; Theme
+    &lt;span class="ni"&gt;&amp;amp;middot;&lt;/span&gt;
+    Powered by &lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://getpelican.com&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Pelican&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    {% if FEED_ALL_ATOM %}
+    &lt;span class="ni"&gt;&amp;amp;middot;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;{{ SITEURL }}/{{ FEED_ALL_ATOM }}&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;rel=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;alternate&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Atom Feed&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    {% endif %}
+    {% if FEED_ALL_RSS %}
+    &lt;span class="ni"&gt;&amp;amp;middot;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;{{ SITEURL }}/{{ FEED_ALL_RSS }}&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;rel=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;alternate&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Rss Feed&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    {% endif %}
+&lt;span class="nt"&gt;&amp;lt;/footer&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在footer标签中间添加一个p标签，例如：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;
+    Copyright © &lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;../pages/about-me&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;JunMa&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    &lt;span class="ni"&gt;&amp;amp;middot;&lt;/span&gt;
+    This work is licensed under a
+    &lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://creativecommons.org/licenses/by/4.0/&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;CC BY 4.0&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;至于具体要加什么内容就看你自己喽。&lt;/p&gt;
+&lt;p&gt;将一个跟自己的想象差很远的主题，做成自己喜欢的样子是一件特别有成就感的事情，添加了Disqus的评论系统和Google的分析系统后，果然变的越来越好用了，不过依然有三个问题没有解决。
+1.就是国内访问的速度问题，一直很慢而且经常崩溃。
+2.页面无法被baidu抓取到，这不是个技术博客，对我来讲这很重要。
+3.字体很丑，有大神用云字体解决这个问题，我也想试试，不过目前还没有成功。&lt;/p&gt;
+&lt;p&gt;估计接下来可能会选择不在Github而直接转为亚马逊的云主机，慢慢来吧，一切都会顺利的。&lt;/p&gt;</summary><category term="编程"></category></entry><entry><title>在Pelican下使用blue-penguin的小心得</title><link href="/zai-pelicanxia-shi-yong-blue-penguinde-xiao-xin-de.html" rel="alternate"></link><updated>2015-11-21T22:10:00+08:00</updated><author><name>Jonym</name></author><id>tag:,2015-11-21:zai-pelicanxia-shi-yong-blue-penguinde-xiao-xin-de.html</id><summary type="html">&lt;h4&gt;选择Pelican编写博客都原因&lt;/h4&gt;
 &lt;p&gt;如果你是程序员，看到此文肯定会喷我，我不是程序员，所以里面有大量超级low的操作，你们就忍忍吧，不希望我误导大家，就请在下面的回复里补充，小马感激不尽。&lt;/p&gt;
 &lt;p&gt;在博客已经算是落后产物的当下，选择做一个博客是个有趣的决定，一方面是因为秉承“做中学”的原则，总觉得既然想学点编程，总不能天天只看教程什么都不做，另一方面也确实发现随着工作年限的积累，需要开始给自己积累些文字性的东西了，没有用像新浪博客这种东西的原因，纯是因为感觉自己编的博客比较diao而已。&lt;/p&gt;
 &lt;p&gt;选择Pelican的原因是，我只学了点Python，当时小勾推荐用的是Jekyll，即便他说不用学Ruby也能用，但事实上我的电脑死活装不上去，而且完全不知道为什么。我觉得小白们应该和我有一样的感觉，大神轻易部署的环境，到自己的电脑里死活装不上，而且根本不知道为什么。博客部署还是用的Github pages，事实上对于一个非程序员而言，如果不是这个博客，可能一辈子都不知道Github究竟是什么鬼。&lt;/p&gt;
@@ -349,7 +488,8 @@ make serve ＃各种生成，生成完以后就可以登陆localhost:8000登陆
 解决方案：充分利用床底空间，卖家可根据顾客的要求定制收纳箱，同时我们的独特之处在于可以推拉，可以自己拆卸，方便安装，节省了找东西的时间，减少了放东西的空间，不用整箱东西搬来搬去，也不用半天找不到自己心爱的东东。让妹子们不仅外表美，也是整理的小能手哦！材料分两种：塑料和木材（塑料成本低，轻便，防潮防水；木材经久耐用）。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;这种创业项目引导方式比较简单，适用于先设计创业项目，后成立创业团队的模式。&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="创业教育"></category></entry><entry><title>这个Blog的基本用法</title><link href="/zhe-ge-blogde-ji-ben-yong-fa.html" rel="alternate"></link><updated>2015-11-15T21:13:00+08:00</updated><author><name>Jonym</name></author><id>tag:,2015-11-15:zhe-ge-blogde-ji-ben-yong-fa.html</id><summary type="html">&lt;h4&gt;爱生活&lt;/h4&gt;
+&lt;/blockquote&gt;</summary><category term="创业教育"></category></entry><entry><title>这个Blog的基本用法</title><link href="/zhe-ge-blogde-ji-ben-yong-fa.html" rel="alternate"></link><updated>2015-11-15T21:13:00+08:00</updated><author><name>Jonym</name></author><id>tag:,2015-11-15:zhe-ge-blogde-ji-ben-yong-fa.html</id><summary type="html">&lt;p&gt;博客都已经有了，那计划如何使用呢？初步的想法，每个星期写一篇文章，文章分为四类：爱生活、会工作、涨姿势、学技能。&lt;/p&gt;
+&lt;h4&gt;爱生活&lt;/h4&gt;
 &lt;p&gt;爱生活主要写生活中发生的相关事情，生活中的心得与感悟，牢骚与吐槽，生活总是美好，怎么有理由不去爱呢。&lt;/p&gt;
 &lt;h4&gt;会工作&lt;/h4&gt;
 &lt;p&gt;工作需要有沉淀，记录工作中的所思所想，沉淀技能，既可以让自己有所积累，也能给同事以参考，建立工作上的知识管理体系。&lt;/p&gt;
@@ -357,7 +497,8 @@ make serve ＃各种生成，生成完以后就可以登陆localhost:8000登陆
 &lt;p&gt;书还是要读的，讲座还是要听的，不做记录么，一直连个读书笔记都没写明白，这次还不来个痛快。&lt;/p&gt;
 &lt;h4&gt;学技能&lt;/h4&gt;
 &lt;p&gt;你以为我只学了如何写代码么，别天真了，我可是产品经理诶，一项技能怎么够，最爱的乐谱，最棒的剧本，通通收进来。&lt;/p&gt;
-&lt;p&gt;还等什么，这次写个痛快。&lt;/p&gt;</summary><category term="博客"></category></entry><entry><title>为什么要给自己建一个Blog</title><link href="/wei-shi-yao-yao-gei-zi-ji-jian-yi-ge-blog.html" rel="alternate"></link><updated>2015-11-15T14:58:00+08:00</updated><author><name>Jonym</name></author><id>tag:,2015-11-15:wei-shi-yao-yao-gei-zi-ji-jian-yi-ge-blog.html</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;还等什么，这次写个痛快。&lt;/p&gt;</summary><category term="博客"></category></entry><entry><title>为什么要给自己建一个Blog</title><link href="/wei-shi-yao-yao-gei-zi-ji-jian-yi-ge-blog.html" rel="alternate"></link><updated>2015-11-15T14:58:00+08:00</updated><author><name>Jonym</name></author><id>tag:,2015-11-15:wei-shi-yao-yao-gei-zi-ji-jian-yi-ge-blog.html</id><summary type="html">&lt;p&gt;这个是一个严肃的问题，我是一个顶着产品经理头衔的培训师，严格意义上在做这个博客之前，我的计算机水平停留在大学的书本上，但真正的写代码，我是一点都不会。&lt;/p&gt;
+&lt;blockquote&gt;
 &lt;p&gt;是的，我是信息管理与信息系统专业毕业的，无论是C语言、JAVA还是SQL，我都没挂科&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;直到有一天，我认识了这样一个人：&lt;/p&gt;
@@ -384,7 +525,8 @@ make serve ＃各种生成，生成完以后就可以登陆localhost:8000登陆
 小马：耶，成功了~~&lt;br&gt;
 从10月16日到11月15日，认识小勾整一个月，自己建了一个博客，超有成就感，有时候，有人告诉你方向，比你自己傻傻努力要有效的多，至少你知道这个路能走通，能走通的路就值得坚定不移的向前走。&lt;/p&gt;
 &lt;p&gt;另外还没有回答，为什么要给自己建一个Blog：&lt;br&gt;
-都说了是装逼神器，装逼神器还能干啥。&lt;/p&gt;</summary><category term="博客"></category></entry><entry><title>也许这就是坚持的意义</title><link href="/ye-xu-zhe-jiu-shi-jian-chi-de-yi-yi.html" rel="alternate"></link><updated>2015-11-13T20:00:00+08:00</updated><author><name>Jonym</name></author><id>tag:,2015-11-13:ye-xu-zhe-jiu-shi-jian-chi-de-yi-yi.html</id><summary type="html">&lt;h1&gt;一万次想放弃，却终究还是不舍得&lt;/h1&gt;
+都说了是装逼神器，装逼神器还能干啥。&lt;/p&gt;</summary><category term="博客"></category></entry><entry><title>也许这就是坚持的意义</title><link href="/ye-xu-zhe-jiu-shi-jian-chi-de-yi-yi.html" rel="alternate"></link><updated>2015-11-13T20:00:00+08:00</updated><author><name>Jonym</name></author><id>tag:,2015-11-13:ye-xu-zhe-jiu-shi-jian-chi-de-yi-yi.html</id><summary type="html">&lt;p&gt;这是本博客的第一篇文章，也是一篇测试文章。&lt;/p&gt;
+&lt;h1&gt;一万次想放弃，却终究还是不舍得&lt;/h1&gt;
 &lt;h2&gt;一万次想放弃，却终究还是不舍得&lt;/h2&gt;
 &lt;h3&gt;一万次想放弃，却终究还是不舍得&lt;/h3&gt;
 &lt;h4&gt;一万次想放弃，却终究还是不舍得&lt;/h4&gt;

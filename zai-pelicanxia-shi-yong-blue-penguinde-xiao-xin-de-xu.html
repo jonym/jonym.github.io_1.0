@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+        <meta charset="utf-8" />
+    <title>小马的杂货铺 | 在Pelican下使用blue-penguin的小心得（续）</title>
+    <link rel="shortcut icon" type="image/png" href="/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="小马的杂货铺 Full Atom Feed" />
+    <link href="/feeds/xue-ji-neng.atom.xml" type="application/atom+xml" rel="alternate" title="小马的杂货铺 Categories Atom Feed" />
+    <link rel="stylesheet" href="/theme/css/screen.css" type="text/css" />
+    <link rel="stylesheet" href="/theme/css/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="/theme/css/print.css" type="text/css" media="print" />
+    <meta name="generator" content="Pelican" />
+
+    <meta name="keywords" content="编程" />
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../..">Home</a></li>
+                <li><a href="/archives">Archives</a></li>
+                <li><a href="/pages/about-me">About Me</a></li>
+            </ul>
+        </nav>
+        <div class="header_box">
+            <h1><a href="../..">小马的杂货铺</a></h1>
+            <h2>JonyM's Blog</h2>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Nov 23, 2015</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="/zai-pelicanxia-shi-yong-blue-penguinde-xiao-xin-de-xu.html" rel="bookmark" title="Permanent Link to &quot;在Pelican下使用blue-penguin的小心得（续）&quot;">在Pelican下使用blue-penguin的小心得（续）</a>
+                </h2>
+                <p>本来是要换掉blue-penguin这个主题换成pelican-clean-blog或者pure，但事实上每一个主题都有自己的缺陷，当我实在没有办法的时候，终于还是决定继续使用这个主题，并且打开Google搜索“如何制作pelican theme”，然后决定自己修改这个主题，后来发现其实也没有太难，两天的时间基本上都搞定了，下面来说一下我都修改了些什么内容。
+本来是要换掉blue-penguin这个主题换成pelican-clean-blog或者pure，但事实上每一个主题都有自己的缺陷，当我实在没有办法的时候，终于还是决定继续使用这个主题，并且打开Google搜索“如何制作pelican theme”，然后决定自己修改这个主题，后来发现其实也没有太难，两天的时间基本上都搞定了，下面来说一下我都修改了些什么内容。
+本来是要换掉blue-penguin这个主题换成pelican-clean-blog或者pure，但事实上每一个主题都有自己的缺陷，当我实在没有办法的时候，终于还是决定继续使用这个主题，并且打开Google搜索“如何制作pelican theme”，然后决定自己修改这个主题，后来发现其实也没有太难，两天的时间基本上都搞定了，下面来说一下我都修改了些什么内容。</p>
+<p>那么我们先来看一下，theme的文档结构是怎样的。</p>
+<div class="highlight"><pre>├── static
+│   ├── css
+│   └── images
+└── templates
+    ├── archives.html         // 显示归类
+    ├── period_archives.html  // 按照日期归类
+    ├── article.html          // 文章处理
+    ├── author.html           // 作者处理
+    ├── authors.html          // 列出所有文章的作者
+    ├── categories.html       // 分类汇总
+    ├── category.html         // 分类处理
+    ├── index.html            // 首页显示所有文章
+    ├── page.html             // 页面处理
+    ├── tag.html              // 标签处理
+    └── tags.html             // 标签汇总，生成云标签
+</pre></div>
+
+
+<blockquote>
+<p>内容引自<a href="http://pelican-docs-zh-cn.readthedocs.org/en/latest/themes.html">http://pelican-docs-zh-cn.readthedocs.org/en/latest/themes.html</a>，与主题不完全符合，意思理解即可。</p>
+</blockquote>
+<h4>在主页中使用摘要</h4>
+<p>blue-penguin的主界面是显示全部文章内容，有人说不能使用Pelican不能使用摘要功能，只能截取固定字数的文字作为摘要，其实完全不是，我们先来看一下<code>templates</code>文件夹下的<code>index.html</code>是怎么写的。</p>
+<div class="highlight"><pre>{% extends &quot;base.html&quot; %}
+
+{% block content %}
+{% set date = None %}
+{% for article in articles_page.object_list %}
+{%   if date != article.date.date() %}
+{%     set first_article_of_day = True %}
+{%   else %}
+{%     set first_article_of_day = False %}
+{%   endif %}
+{%   set date = article.date.date() %}
+{%   include &quot;article_stub.html&quot; %}
+{% endfor %}
+
+{% include &quot;pagination.html&quot; %}
+{% endblock %}
+</pre></div>
+
+
+<p>注意<code>{%   include "article_stub.html" %}</code>,内容显示他直接引用的博客正文的内容，也太懒点了吧，看了看别人都是怎么写的最后做了如下的设计，不能直接改动<code>article_stub.html</code>,不然博客文章也都出问题，首先复制<code>templates</code>文件夹下的<code>article_stub.html</code>，并将其改名为<code>index_stub.html</code>，然后将<code>templates</code>文件夹下的<code>index.html</code>中</p>
+<div class="highlight"><pre>{%   include &quot;article_stub.html&quot; %}
+</pre></div>
+
+
+<p>改为</p>
+<div class="highlight"><pre>{%   include &quot;index_stub.html&quot; %}
+</pre></div>
+
+
+<p>然后去修改<code>index_stub.html</code>文件，将</p>
+<div class="highlight"><pre>{{ article.content }}
+</pre></div>
+
+
+<p>改为</p>
+<div class="highlight"><pre>{% if article.summary %}
+{{ article.summary|truncate(200) }}
+{% endif %}
+</pre></div>
+
+
+<p>如果用markdown里面加入summary，那么主页将显示summary内容，如果没有，将会取文章前200个字符，当然200时通过<code>truncate(200)</code>定义的，可以改，这里要注意的是如果食用摘要功能，在正文中需要再写一次，进入正文后无法看到摘要。
+除此之外，还有一个重要的点就是在<code>index_stub.html</code>中需要删除倒数第二行代码</p>
+<div class="highlight"><pre>{% include &quot;disqus.html&quot; %}
+</pre></div>
+
+
+<p>否则如果添加disqus的评论功能，主页会出现评论项目。</p>
+<h4>修复网站标题与home按钮点击无法正常回到主页</h4>
+<p>上篇文章说过这个问题，我做了一个假的Home，但是假的就是假的，还是想弄成真的，其实真正做起来也没有太难，关键是找对地方。打开打开<code>templates</code>文件夹下的<code>base.html</code>，找到如下两段代码：</p>
+<div class="highlight"><pre>{% if DISPLAY_HOME or DISPLAY_HOME is not defined %}
+    <span class="nt">&lt;li</span><span class="err">{%</span> <span class="na">if</span> <span class="na">output_file =</span><span class="s">=</span> <span class="err">&quot;</span><span class="na">index</span><span class="err">.</span><span class="na">html</span><span class="err">&quot;</span> <span class="err">%}</span> <span class="na">class=</span><span class="s">&quot;selected&quot;</span><span class="err">{%</span> <span class="na">endif</span> <span class="err">%}</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ SITEURL }}&quot;</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+ {% endif %}
+</pre></div>
+
+
+<p>以及</p>
+<div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;header_box&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h1&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ SITEURL }}&quot;</span><span class="nt">&gt;</span>{{ SITENAME }}<span class="nt">&lt;/a&gt;&lt;/h1&gt;</span>
+        {% if SITESUBTITLE %}
+    <span class="nt">&lt;h2&gt;</span>{{ SITESUBTITLE }}<span class="nt">&lt;/h2&gt;</span>
+    {% endif %}
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+
+
+<p>第一段对应是Home，第二段对应的是博客的主标题，两个的改法相同，将</p>
+<div class="highlight"><pre>href=&quot;{{ SITEURL }}&quot;
+</pre></div>
+
+
+<p>改成</p>
+<div class="highlight"><pre>href=&quot;../..&quot;
+</pre></div>
+
+
+<p>就可以了。
+在第二段代码中我们还发现了添加副标题的功能，可以在配置文件<code>pelicanconf.py</code>中添加一段比如<code>SITESUBTITLE = u"JonyM's Blog"</code>效果相当漂亮，谁用谁知道。</p>
+<h4>修改底部文字</h4>
+<p>官方给到到底部文字始终是<code>Blue Penguin Theme · Powered by Pelican · Atom Feed</code>如果想添加一些关于自己的标记，版权声明，甚至备案如何做呢？方法是，打开<code>templates</code>文件夹下的<code>base.html</code>，找到如下代码：</p>
+<div class="highlight"><pre><span class="nt">&lt;footer&gt;</span>
+    <span class="nt">&lt;p&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;https://github.com/jody-frankowski/blue-penguin&quot;</span><span class="nt">&gt;</span>Blue Penguin<span class="nt">&lt;/a&gt;</span> Theme
+    <span class="ni">&amp;middot;</span>
+    Powered by <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://getpelican.com&quot;</span><span class="nt">&gt;</span>Pelican<span class="nt">&lt;/a&gt;</span>
+    {% if FEED_ALL_ATOM %}
+    <span class="ni">&amp;middot;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ SITEURL }}/{{ FEED_ALL_ATOM }}&quot;</span> <span class="na">rel=</span><span class="s">&quot;alternate&quot;</span><span class="nt">&gt;</span>Atom Feed<span class="nt">&lt;/a&gt;</span>
+    {% endif %}
+    {% if FEED_ALL_RSS %}
+    <span class="ni">&amp;middot;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ SITEURL }}/{{ FEED_ALL_RSS }}&quot;</span> <span class="na">rel=</span><span class="s">&quot;alternate&quot;</span><span class="nt">&gt;</span>Rss Feed<span class="nt">&lt;/a&gt;</span>
+    {% endif %}
+<span class="nt">&lt;/footer&gt;</span>
+</pre></div>
+
+
+<p>在footer标签中间添加一个p标签，例如：</p>
+<div class="highlight"><pre>    <span class="nt">&lt;p&gt;</span>
+    Copyright © <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;../pages/about-me&quot;</span><span class="nt">&gt;</span>JunMa<span class="nt">&lt;/a&gt;</span>
+    <span class="ni">&amp;middot;</span>
+    This work is licensed under a
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://creativecommons.org/licenses/by/4.0/&quot;</span><span class="nt">&gt;</span>CC BY 4.0<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/p&gt;</span>
+</pre></div>
+
+
+<p>至于具体要加什么内容就看你自己喽。</p>
+<p>将一个跟自己的想象差很远的主题，做成自己喜欢的样子是一件特别有成就感的事情，添加了Disqus的评论系统和Google的分析系统后，果然变的越来越好用了，不过依然有三个问题没有解决。
+1.就是国内访问的速度问题，一直很慢而且经常崩溃。
+2.页面无法被baidu抓取到，这不是个技术博客，对我来讲这很重要。
+3.字体很丑，有大神用云字体解决这个问题，我也想试试，不过目前还没有成功。</p>
+<p>估计接下来可能会选择不在Github而直接转为亚马逊的云主机，慢慢来吧，一切都会顺利的。</p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="/zai-pelicanxia-shi-yong-blue-penguinde-xiao-xin-de-xu.html">posted at 21:20</a>
+                    &nbsp;&middot;&nbsp;<a href="/category/xue-ji-neng.html" rel="tag">学技能</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="/tag/bian-cheng.html" class="tags">编程</a>
+                </div>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'jonym';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+            </article>
+            <div class="clear"></div>
+            <footer>
+                <p>
+                <a href="https://github.com/jody-frankowski/blue-penguin">Blue Penguin</a> Theme
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+                &middot;
+                <a href="/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
+                <p>
+                Copyright © <a href="../pages/about-me">JunMa</a>
+                &middot;
+                This work is licensed under a
+                <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+                </p>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+     
+     ga('create', 'UA-70462360-1', 'auto');
+     ga('send', 'pageview');
+     
+</script>
+</body>
+</html>
