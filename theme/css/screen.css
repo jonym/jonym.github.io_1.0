@@ -25,12 +25,15 @@ time, mark, audio, video {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
+    font-family: "Microsoft YaHei", sans-serif;
 }
 em {
     font-style: italic;
+    font-family: "Microsoft YaHei", sans-serif;
 }
 strong {
     font-weight: bold;
+    font-family: "Microsoft YaHei", sans-serif;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -57,7 +60,7 @@ table {
 }
 
 body {
-    font-family: Georgia, serif;
+    font-family: "Microsoft YaHei", sans-serif;
     font-size: 16px;
     line-height: 1.5em;
     color: #444;
@@ -82,7 +85,7 @@ ol {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: sans-serif;
+    font-family: "Microsoft YaHei", sans-serif;
     font-weight: bold;
 }
 h1, h2, h3 {
@@ -113,7 +116,7 @@ blockquote {
 
 .info {
     margin-top: 1.3em;
-    font-family: sans-serif;
+    font-family: "Microsoft YaHei", sans-serif;
     text-align: right;
     color: #BBB;
 }
@@ -201,7 +204,7 @@ sub {
 .post pre, .page pre {
     padding: .8em;
     font-size: 12px;
-    font-family: Monospace;
+    font-family: monospace, "Microsoft YaHei", sans-serif;
     line-height: 1.1em;
     overflow: auto;
 }
@@ -270,7 +273,7 @@ header h2 {
 }
 
 .pages {
-    font-family: sans-serif;
+    font-family: "Microsoft YaHei", sans-serif;
     line-height: 2.5em;
     margin: 4.5em 0 3em;
     background-color: #F9F9F9;
