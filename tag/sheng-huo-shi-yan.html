@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/theme/css/pygments.css" type="text/css" />
     <link rel="stylesheet" href="/theme/css/print.css" type="text/css" media="print" />
     <meta name="generator" content="Pelican" />
+    
 </head>
 <body>
     <header>
@@ -55,6 +56,21 @@
 
             <div class="clear"></div>
             <footer>
+                <script type="text/javascript" src="http://www.ostools.net/js/jquery/jquery-1.7.2.js"></script"></script>
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        $('#content3').click(function(){
+                            if($('#content4').css("display")=="none"){
+                            var t = $(window).scrollTop();
+                            $('body,html').animate({'scrollTop':t+259},500);
+                            } else {
+                            var t = $(window).scrollTop();
+                            $('body,html').animate({'scrollTop':t-259},500);
+                            }
+                            $('#content4').slideToggle(500);
+                            });
+                        });
+                    </script>
                 <p>
                 <a href="https://github.com/jody-frankowski/blue-penguin">Blue Penguin</a> Theme
                 &middot;
@@ -62,10 +78,10 @@
                 &middot;
                 <a href="/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
                 &middot;
-                <span>打赏</span>
-                <div style="background-position;bottom:0px;left:100px">
+                <a style="cursor:pointer" id="content3">打赏</a>
+                <div id="content4" style="display:none;">
                     <div>微信扫描，给小马添加草料</div>
-                    <div><img src="images/dashang.png" width="200" higt="200"></div>
+                    <div><img src="../images/dashang.png" width="200" higt="200"></div>
                 </div>
                 <p>
                 Copyright © <a href="../pages/about-me">JunMa</a>
